@@ -114,6 +114,11 @@
   q.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); const first = $('.item:not([hidden]) .open'); if (first) $('#katalog').scrollIntoView(); } });
   $$('.tabs button').forEach(b => b.addEventListener('click', () => { level = b.dataset.f; $$('.tabs button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); apply(); }));
 
+  /* Kunduzgi / tungi rejim */
+  const root = document.documentElement;
+  if (!root.dataset.theme) root.dataset.theme = 'light';
+  $('#theme').addEventListener('click', () => { const t = root.dataset.theme === 'dark' ? 'light' : 'dark'; root.dataset.theme = t; store.set('ed-theme', t); $('meta[name=theme-color]').content = t === 'dark' ? '#06101a' : '#0a4067'; });
+
   /* Mobil menyu */
   const nav = $('#nav'), bg = $('#burger');
   bg.addEventListener('click', () => { const o = nav.classList.toggle('open'); bg.setAttribute('aria-expanded', String(o)); });
